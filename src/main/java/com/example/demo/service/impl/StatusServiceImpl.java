@@ -4,8 +4,10 @@ import com.example.demo.entity.Status;
 import com.example.demo.repository.StatusRepository;
 import com.example.demo.service.StatusService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
 @Service
@@ -35,5 +37,10 @@ public class StatusServiceImpl implements StatusService {
     @Override
     public Set<Status> findAll() {
         return statusRepository.findAll().stream().collect(Collectors.toSet());
+    }
+
+    @Override
+    public Optional<Status> findByName(String status) {
+        return statusRepository.findByStatusName(status);
     }
 }
